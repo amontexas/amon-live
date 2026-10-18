@@ -15,24 +15,23 @@
             flex-direction: column;
             min-height: 100vh;
             background-image: radial-gradient(circle at top, #1a1a24 0%, #0a0a0c 100%);
-            padding: 10px;
+            padding: 15px;
         }
 
         /* --- LA ZONE DU LECTEUR VIDEO --- */
         .player-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 1200px; /* Beaucoup plus large pour le PC */
             margin: 0 auto;
-            aspect-ratio: 16 / 9; /* Format de la vidéo */
+            aspect-ratio: 16 / 9; 
             background: #000;
             border-radius: 12px;
             overflow: hidden;
             position: relative;
             border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px rgba(0, 230, 118, 0.2);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(0, 230, 118, 0.2);
         }
 
-        /* On force l'iframe à prendre 100% de la place */
         .player-container iframe {
             position: absolute;
             top: 0;
@@ -45,8 +44,8 @@
         /* --- LA ZONE D'INFOS --- */
         .info-container {
             text-align: center;
-            padding: 20px;
-            max-width: 600px;
+            padding: 25px 20px;
+            max-width: 800px; /* Plus large aussi */
             margin: 0 auto;
             width: 100%;
         }
@@ -61,22 +60,23 @@
         }
 
         .logo-img {
-            width: 60px;
-            height: 60px;
+            width: 70px; /* Logo un peu plus grand sur PC */
+            height: 70px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid #ffd600;
+            border: 3px solid #ffd600;
+            box-shadow: 0 0 15px rgba(255, 214, 0, 0.4);
         }
 
         .logo-text {
             font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #ffd600;
             text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(255, 214, 0, 0.5);
+            text-shadow: 0 0 15px rgba(255, 214, 0, 0.6);
         }
 
-        .subtitle { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
+        .subtitle { color: #aaa; font-size: 1rem; margin-bottom: 15px; }
         
         .live-badge {
             display: inline-flex;
@@ -84,14 +84,14 @@
             gap: 8px;
             background-color: #ff3d3d;
             color: white;
-            padding: 6px 15px;
+            padding: 8px 20px;
             border-radius: 30px;
             font-weight: 800;
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite;
         }
-        .live-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; }
+        .live-dot { width: 10px; height: 10px; background: #fff; border-radius: 50%; }
         @keyframes pulse {
             0% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 61, 61, 0.7); }
             50% { opacity: 0.9; transform: scale(1.02); }
@@ -108,31 +108,48 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 45px;
-            height: 45px;
+            width: 50px;
+            height: 50px;
             background: rgba(255, 255, 255, 0.05);
             color: #ccc;
             border-radius: 50%;
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             font-weight: bold;
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s;
         }
-        .socials a:active { background: rgba(255, 255, 255, 0.2); transform: scale(0.9); }
+        .socials a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transform: translateY(-3px);
+        }
+
+        /* --- AJUSTEMENTS SPÉCIFIQUES POUR GRANDS ÉCRANS (PC) --- */
+        @media (min-width: 1000px) {
+            body {
+                justify-content: center; /* Centre tout verticalement sur PC */
+            }
+            .player-container {
+                /* Le lecteur prend 90% de la hauteur de l'écran sur PC */
+                max-height: 75vh; 
+                width: 90vw;
+                max-width: 1400px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <!-- ZONE 1 : LE LECTEUR VIDEO EN DIRECT -->
     <div class="player-container">
-        <!-- ⚠️ LE CODE D'INTÉGRATION EST ICI ⚠️ -->
         <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
     </div>
 
     <!-- ZONE 2 : LES INFOS -->
     <div class="info-container">
         <div class="logo-row">
+            <!-- N'oublie pas de remplacer par ton vrai logo plus tard ! -->
             <img src="https://via.placeholder.com/120/ffd600/000000?text=LOGO" alt="Logo" class="logo-img">
             <div class="logo-text">Amon du Texas</div>
         </div>
