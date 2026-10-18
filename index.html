@@ -5,167 +5,263 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Amon du Texas - Live</title>
     <style>
+        /* --- RESET & POLICES --- */
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap');
         
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: #0a0a0c;
+            font-family: 'Inter', sans-serif;
+            background-color: #08080a;
             color: #ffffff;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% -20%, #1c1c2b 0%, #08080a 60%);
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            background-image: radial-gradient(circle at top, #1a1a24 0%, #0a0a0c 100%);
-            padding: 15px;
         }
 
-        /* --- LA ZONE DU LECTEUR VIDEO --- */
-        .player-container {
-            width: 100%;
-            max-width: 1200px; /* Beaucoup plus large pour le PC */
-            margin: 0 auto;
-            aspect-ratio: 16 / 9; 
-            background: #000;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(0, 230, 118, 0.2);
-        }
-
-        .player-container iframe {
-            position: absolute;
+        /* --- BARRE DE NAVIGATION --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 30px;
+            background: rgba(8, 8, 10, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: sticky;
             top: 0;
-            left: 0;
+            z-index: 100;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .nav-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 900;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+            color: #ffd600;
+            text-shadow: 0 0 10px rgba(255, 214, 0, 0.3);
+        }
+
+        .nav-btn {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .nav-btn:hover { background: rgba(255,255,255,0.1); }
+
+        /* --- CONTENEUR PRINCIPAL --- */
+        .main-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
             width: 100%;
-            height: 100%;
+        }
+
+        /* --- LECTEUR VIDÉO --- */
+        .player-wrapper {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            border-radius: 16px;
+            position: relative;
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.9), 0 0 40px rgba(0, 230, 118, 0.15);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .player-wrapper iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             border: none;
         }
 
-        /* --- LA ZONE D'INFOS --- */
-        .info-container {
-            text-align: center;
-            padding: 25px 20px;
-            max-width: 800px; /* Plus large aussi */
-            margin: 0 auto;
+        /* --- INFOS CHAÎNE --- */
+        .channel-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
             width: 100%;
+            max-width: 1100px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
-        .logo-row {
+        .info-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Le rond jaune a été remplacé par un emoji style "Affiche de film" */
+        .channel-avatar {
+            width: 70px; height: 70px;
+            border-radius: 50%;
+            border: 3px solid #ffd600;
+            background: #1a1a1a;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 10px;
-            margin-top: 10px;
+            font-size: 2rem;
+            box-shadow: 0 0 15px rgba(255, 214, 0, 0.2);
         }
 
-        .logo-img {
-            width: 70px; /* Logo un peu plus grand sur PC */
-            height: 70px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ffd600;
-            box-shadow: 0 0 15px rgba(255, 214, 0, 0.4);
+        .channel-text h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 900;
+            margin-bottom: 5px;
         }
 
-        .logo-text {
-            font-family: 'Impact', 'Arial Black', sans-serif;
-            font-size: 2.5rem;
-            color: #ffd600;
-            text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(255, 214, 0, 0.6);
+        .channel-text p {
+            color: #888;
+            font-size: 0.9rem;
         }
 
-        .subtitle { color: #aaa; font-size: 1rem; margin-bottom: 15px; }
-        
-        .live-badge {
-            display: inline-flex;
+        .info-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn-live {
+            background: #ff3d3d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 800;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: flex;
             align-items: center;
             gap: 8px;
-            background-color: #ff3d3d;
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: 800;
-            font-size: 0.9rem;
-            margin-bottom: 20px;
-            animation: pulse 1.5s infinite;
+            animation: pulse 2s infinite;
         }
-        .live-dot { width: 10px; height: 10px; background: #fff; border-radius: 50%; }
-        @keyframes pulse {
-            0% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 61, 61, 0.7); }
-            50% { opacity: 0.9; transform: scale(1.02); }
-            100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 12px rgba(255, 61, 61, 0); }
+        .btn-live::before {
+            content: "";
+            width: 8px; height: 8px;
+            background: white;
+            border-radius: 50%;
         }
 
-        .socials {
+        .btn-social {
+            width: 45px; height: 45px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 8px;
             display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .socials a {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.05);
-            color: #ccc;
-            border-radius: 50%;
-            text-decoration: none;
-            font-size: 1.2rem;
-            font-weight: bold;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s;
-        }
-        .socials a:hover {
-            background: rgba(255, 255, 255, 0.2);
             color: #fff;
-            transform: translateY(-3px);
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-social:hover { background: rgba(255,255,255,0.15); }
+
+        /* --- DESCRIPTION --- */
+        .description-box {
+            width: 100%;
+            max-width: 1100px;
+            background: rgba(20, 20, 25, 0.5);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.05);
+            line-height: 1.6;
+            color: #ccc;
+            font-size: 0.95rem;
         }
 
-        /* --- AJUSTEMENTS SPÉCIFIQUES POUR GRANDS ÉCRANS (PC) --- */
-        @media (min-width: 1000px) {
-            body {
-                justify-content: center; /* Centre tout verticalement sur PC */
-            }
-            .player-container {
-                /* Le lecteur prend 90% de la hauteur de l'écran sur PC */
-                max-height: 75vh; 
-                width: 90vw;
-                max-width: 1400px;
-            }
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* --- RESPONSIVE (MOBILE) --- */
+        @media (max-width: 768px) {
+            .navbar { padding: 10px 15px; }
+            .nav-title { font-size: 1.1rem; }
+            .player-wrapper { border-radius: 0; border: none; box-shadow: none; margin-bottom: 15px; }
+            .main-container { padding: 0; }
+            .channel-info { padding: 15px; flex-direction: column; }
+            .info-right { width: 100%; justify-content: space-between; }
+            .channel-avatar { width: 55px; height: 55px; font-size: 1.5rem; }
+            .channel-text h1 { font-size: 1.2rem; }
+            .description-box { border-radius: 0; margin: 0 10px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ZONE 1 : LE LECTEUR VIDEO EN DIRECT -->
-    <div class="player-container">
-        <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
-    </div>
+    <!-- BARRE DE NAVIGATION -->
+    <nav class="navbar">
+        <a href="#" class="nav-brand">
+            <!-- Plus d'image, juste du texte stylé -->
+            <div class="nav-title">😈 AMON DU TEXAS</div>
+        </a>
+        <button class="nav-btn">Connexion</button>
+    </nav>
 
-    <!-- ZONE 2 : LES INFOS -->
-    <div class="info-container">
-        <div class="logo-row">
-            <!-- N'oublie pas de remplacer par ton vrai logo plus tard ! -->
-            <img src="https://via.placeholder.com/120/ffd600/000000?text=LOGO" alt="Logo" class="logo-img">
-            <div class="logo-text">Amon du Texas</div>
-        </div>
+    <main class="main-container">
         
-        <div class="subtitle">Le meilleur du cinéma Bis, Rare & Nanar</div>
-        
-        <div class="live-badge">
-            <div class="live-dot"></div> EN DIRECT
+        <!-- LECTEUR VIDÉO -->
+        <div class="player-wrapper">
+            <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
         </div>
 
-        <div class="socials">
-            <a href="#" title="Discord">D</a>
-            <a href="#" title="Instagram">I</a>
-            <a href="#" title="X">X</a>
+        <!-- INFOS CHAÎNE -->
+        <div class="channel-info">
+            <div class="info-left">
+                <!-- Rond avec un Emoji à la place de l'image -->
+                <div class="channel-avatar">🎬</div>
+                <div class="channel-text">
+                    <h1>Amon du Texas</h1>
+                    <p>Le meilleur du cinéma Bis, Rare & Nanar</p>
+                </div>
+            </div>
+            
+            <div class="info-right">
+                <a href="#" class="btn-live">EN DIRECT</a>
+                <a href="#" class="btn-social" title="Discord">D</a>
+                <a href="#" class="btn-social" title="Instagram">I</a>
+                <a href="#" class="btn-social" title="X">X</a>
+            </div>
         </div>
-    </div>
+
+        <!-- DESCRIPTION -->
+        <div class="description-box">
+            <strong>Bienvenue chez Amon du Texas.</strong><br>
+            Diffusions de films rares, nanars oubliés et pépites du cinéma Bis. 
+            N'hésitez pas à rejoindre le Discord pour discuter pendant le live !
+            <br><br>
+            <span style="color: #666; font-size: 0.8rem;">#streaming #VHS #CinemaBis #LaserDisc</span>
+        </div>
+
+    </main>
 
 </body>
 </html>
