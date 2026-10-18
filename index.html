@@ -2,127 +2,151 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Amon du Texas - Live</title>
     <style>
-        /* Style global - Ambiance sombre et néon */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: #0a0a0c;
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             min-height: 100vh;
             background-image: radial-gradient(circle at top, #1a1a24 0%, #0a0a0c 100%);
+            padding: 10px;
+        }
+
+        /* --- LA ZONE DU LECTEUR VIDEO --- */
+        .player-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            aspect-ratio: 16 / 9; /* Format de la vidéo */
+            background: #000;
+            border-radius: 12px;
             overflow: hidden;
-        }
-
-        /* Le conteneur principal */
-        .container {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(20, 20, 25, 0.8);
+            position: relative;
             border: 1px solid #333;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(0, 230, 118, 0.1);
-            max-width: 500px;
-            width: 90%;
-            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px rgba(0, 230, 118, 0.2);
         }
 
-        /* Le logo / Titre */
-        .logo {
-            font-family: 'Impact', sans-serif;
-            font-size: 3rem;
+        /* On force l'iframe à prendre 100% de la place */
+        .player-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- LA ZONE D'INFOS --- */
+        .info-container {
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #ffd600;
+        }
+
+        .logo-text {
+            font-family: 'Impact', 'Arial Black', sans-serif;
+            font-size: 2rem;
             color: #ffd600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255, 214, 0, 0.5), 0 0 20px rgba(255, 214, 0, 0.3);
+            text-shadow: 0 0 10px rgba(255, 214, 0, 0.5);
         }
 
-        /* Sous-titre */
-        .subtitle {
-            color: #888;
-            font-size: 1.1rem;
-            margin-bottom: 30px;
-        }
-
-        /* Indicateur EN DIRECT */
+        .subtitle { color: #aaa; font-size: 0.9rem; margin-bottom: 15px; }
+        
         .live-badge {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
             background-color: #ff3d3d;
             color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 0.9rem;
+            padding: 6px 15px;
+            border-radius: 30px;
+            font-weight: 800;
+            font-size: 0.8rem;
             margin-bottom: 20px;
             animation: pulse 1.5s infinite;
         }
+        .live-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; }
         @keyframes pulse {
-            0% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 61, 61, 0.7); }
-            70% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(255, 61, 61, 0); }
-            100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 61, 61, 0); }
+            0% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 61, 61, 0.7); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+            100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 12px rgba(255, 61, 61, 0); }
         }
 
-        /* Le gros bouton pour regarder */
-        .btn-watch {
-            display: block;
-            background: #00e676;
-            color: #000;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            padding: 20px;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
-        }
-
-        .btn-watch:hover {
-            transform: scale(1.05);
-            background: #00c853;
-            box-shadow: 0 0 25px rgba(0, 230, 118, 0.8);
-        }
-
-        /* Le pied de page */
-        .footer {
-            margin-top: 30px;
-            font-size: 0.8rem;
-            color: #555;
+        .socials {
             display: flex;
             justify-content: center;
             gap: 15px;
+            margin-top: 20px;
         }
+        .socials a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        .socials a:active { background: rgba(255, 255, 255, 0.2); transform: scale(0.9); }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- Ton logo en texte -->
-        <div class="logo">Amon du Texas</div>
-        <div class="subtitle">Le meilleur du cinéma Bis & Rétro</div>
+    <!-- ZONE 1 : LE LECTEUR VIDEO EN DIRECT -->
+    <div class="player-container">
+        <!-- ⚠️ LE CODE D'INTÉGRATION EST ICI ⚠️ -->
+        <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
+    </div>
 
-        <!-- Badge EN DIRECT -->
-        <div class="live-badge">● EN DIRECT MAINTENANT</div>
-        <br>
+    <!-- ZONE 2 : LES INFOS -->
+    <div class="info-container">
+        <div class="logo-row">
+            <img src="https://via.placeholder.com/120/ffd600/000000?text=LOGO" alt="Logo" class="logo-img">
+            <div class="logo-text">Amon du Texas</div>
+        </div>
+        
+        <div class="subtitle">Le meilleur du cinéma Bis, Rare & Nanar</div>
+        
+        <div class="live-badge">
+            <div class="live-dot"></div> EN DIRECT
+        </div>
 
-        <!-- ⚠️ C'EST ICI QU'IL FAUT METTRE LE LIEN DE TON STREAM ⚠️ -->
-        <!-- Remplace le lien "https://8chan.tv/tonlien" par le vrai lien de ta chaîne -->
-        <a href="https://8chan.tv/stream" target="_blank" class="btn-watch">
-            ▶ REGARDER LE LIVE
-        </a>
-
-        <div class="footer">
-            <span>24/7</span>
-            <span>•</span>
-            <span>Streaming</span>
-            <span>•</span>
-            <span>VHS / Bis</span>
+        <div class="socials">
+            <a href="#" title="Discord">D</a>
+            <a href="#" title="Instagram">I</a>
+            <a href="#" title="X">X</a>
         </div>
     </div>
 
