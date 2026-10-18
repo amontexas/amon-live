@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amon du Texas - Live</title>
+    <style>
+        /* Style global - Ambiance sombre et néon */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0a0a0c;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at top, #1a1a24 0%, #0a0a0c 100%);
+            overflow: hidden;
+        }
+
+        /* Le conteneur principal */
+        .container {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(20, 20, 25, 0.8);
+            border: 1px solid #333;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(0, 230, 118, 0.1);
+            max-width: 500px;
+            width: 90%;
+            z-index: 10;
+        }
+
+        /* Le logo / Titre */
+        .logo {
+            font-family: 'Impact', sans-serif;
+            font-size: 3rem;
+            color: #ffd600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 214, 0, 0.5), 0 0 20px rgba(255, 214, 0, 0.3);
+        }
+
+        /* Sous-titre */
+        .subtitle {
+            color: #888;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* Indicateur EN DIRECT */
+        .live-badge {
+            display: inline-block;
+            background-color: #ff3d3d;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 61, 61, 0.7); }
+            70% { opacity: 0.8; box-shadow: 0 0 0 10px rgba(255, 61, 61, 0); }
+            100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 61, 61, 0); }
+        }
+
+        /* Le gros bouton pour regarder */
+        .btn-watch {
+            display: block;
+            background: #00e676;
+            color: #000;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            padding: 20px;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.4);
+        }
+
+        .btn-watch:hover {
+            transform: scale(1.05);
+            background: #00c853;
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.8);
+        }
+
+        /* Le pied de page */
+        .footer {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #555;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Ton logo en texte -->
+        <div class="logo">Amon du Texas</div>
+        <div class="subtitle">Le meilleur du cinéma Bis & Rétro</div>
+
+        <!-- Badge EN DIRECT -->
+        <div class="live-badge">● EN DIRECT MAINTENANT</div>
+        <br>
+
+        <!-- ⚠️ C'EST ICI QU'IL FAUT METTRE LE LIEN DE TON STREAM ⚠️ -->
+        <!-- Remplace le lien "https://8chan.tv/tonlien" par le vrai lien de ta chaîne -->
+        <a href="https://8chan.tv/stream" target="_blank" class="btn-watch">
+            ▶ REGARDER LE LIVE
+        </a>
+
+        <div class="footer">
+            <span>24/7</span>
+            <span>•</span>
+            <span>Streaming</span>
+            <span>•</span>
+            <span>VHS / Bis</span>
+        </div>
+    </div>
+
+</body>
+</html>
