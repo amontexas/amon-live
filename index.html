@@ -19,7 +19,7 @@
             flex-direction: column;
         }
 
-        /* --- BARRE DE NAVIGATION HAUTE --- */
+        /* --- BARRE DE NAVIGATION --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -33,230 +33,122 @@
             z-index: 100;
         }
 
-        .nav-brand {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            text-decoration: none;
-            color: #fff;
-        }
-
+        .nav-brand { display: flex; align-items: center; gap: 15px; text-decoration: none; color: #fff; }
         .nav-title {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900;
-            font-size: 1.8rem;
-            letter-spacing: 3px;
-            color: #ffffff;
-            text-transform: uppercase;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 1.8rem;
+            letter-spacing: 3px; color: #ffffff; text-transform: uppercase;
             text-shadow: 0 0 10px rgba(255, 61, 61, 0.4);
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-        }
-
+        .nav-links { display: flex; gap: 20px; align-items: center; }
         .nav-link {
-            color: #aaa;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #aaa; text-decoration: none; font-weight: 600; font-size: 0.95rem;
+            transition: 0.2s; text-transform: uppercase; letter-spacing: 1px;
         }
         .nav-link:hover, .nav-link.active { color: #fff; }
         .nav-link.active { border-bottom: 2px solid #ff3d3d; padding-bottom: 5px; }
 
         /* --- CONTENEUR PRINCIPAL --- */
         .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 20px;
-            max-width: 1500px;
-            margin: 0 auto;
-            width: 100%;
+            flex: 1; display: flex; flex-direction: column; align-items: center;
+            padding: 20px; max-width: 1500px; margin: 0 auto; width: 100%;
         }
 
         /* --- LAYOUT (VIDÉO + CHAT) --- */
         .stream-layout {
-            display: grid;
-            grid-template-columns: 1fr 400px; /* Chat un peu plus large */
-            gap: 20px;
-            width: 100%;
-            max-width: 1400px;
+            display: grid; grid-template-columns: 1fr 400px; gap: 20px;
+            width: 100%; max-width: 1400px;
         }
 
         /* --- LECTEUR VIDÉO --- */
         .player-wrapper {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            border-radius: 8px;
-            position: relative;
-            border: 1px solid #333;
+            width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 8px;
+            position: relative; border: 1px solid #333;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(255, 61, 61, 0.1);
             overflow: hidden;
         }
 
-        .player-wrapper iframe {
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            border: none;
+        .player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* --- BARRE D'INSCRIPTION --- */
+        .subscribe-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            background: #111; padding: 15px 20px; border-radius: 0 0 8px 8px;
+            border: 1px solid #333; border-top: none; margin-bottom: 15px;
+            flex-wrap: wrap; gap: 15px;
         }
 
-        /* Barre de contrôle sous la vidéo */
-        .player-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: #111;
-            padding: 10px 15px;
-            border-radius: 0 0 8px 8px;
-            border: 1px solid #333;
-            border-top: none;
-            font-size: 0.85rem;
-            color: #aaa;
+        .subscribe-bar p { color: #ccc; font-size: 0.9rem; margin: 0; }
+        
+        .subscribe-form {
+            display: flex; gap: 10px; flex-grow: 1; max-width: 400px;
         }
 
-        .controls-left { display: flex; align-items: center; gap: 15px; }
-        .btn-control {
-            background: transparent;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            font-size: 1rem;
+        .subscribe-form input {
+            flex-grow: 1; padding: 10px 15px; border-radius: 6px; border: 1px solid #444;
+            background: #1a1a1a; color: #fff; font-family: inherit; outline: none;
+        }
+        .subscribe-form input:focus { border-color: #00b0ff; }
+        
+        .subscribe-form button {
+            padding: 10px 20px; border-radius: 6px; border: none;
+            background: #00b0ff; color: #000; font-weight: bold; cursor: pointer;
             transition: 0.2s;
         }
-        .btn-control:hover { color: #ff3d3d; }
-
-        /* --- CHAT MINNIT --- */
-        .chat-box {
-            background: #0f0f13;
-            border: 1px solid #333;
-            border-radius: 8px;
-            display: flex;
-            flex-direction: column;
-            height: 600px; /* Hauteur fixe pour le chat */
-            overflow: hidden;
-            position: relative;
-        }
-
-        .chat-header {
-            background: #1a1a24;
-            padding: 12px 15px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            border-bottom: 1px solid #333;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-shrink: 0;
-        }
-
-        /* Zone qui contient le script Minnit */
-        .chat-embed-container {
-            flex: 1;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-        }
-        
-        /* On force le widget Minnit à prendre toute la place */
-        .chat-embed-container iframe {
-            width: 100% !important;
-            height: 100% !important;
-            border: none;
-        }
+        .subscribe-form button:hover { background: #0099e6; }
 
         /* --- INFOS CHAÎNE --- */
         .channel-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            width: 100%;
-            padding: 15px 0;
-            border-bottom: 1px solid #222;
-            margin-top: 10px;
+            display: flex; justify-content: space-between; align-items: flex-start;
+            width: 100%; padding: 15px 0; border-bottom: 1px solid #222;
         }
 
         .info-left { display: flex; flex-direction: column; gap: 5px; }
-        
-        .channel-text h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
+        .channel-text h1 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; }
         .channel-text p { color: #888; font-size: 0.9rem; }
 
         .btn-live {
-            background: #ff3d3d;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 4px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: pulse 2s infinite;
+            background: #ff3d3d; color: white; padding: 8px 16px; border-radius: 4px;
+            font-weight: bold; font-size: 0.8rem; text-decoration: none;
+            display: flex; align-items: center; gap: 8px; animation: pulse 2s infinite;
         }
+
+        /* --- CHAT MINNIT --- */
+        .chat-box {
+            background: #0f0f13; border: 1px solid #333; border-radius: 8px;
+            display: flex; flex-direction: column; height: 600px; overflow: hidden;
+        }
+
+        .chat-header {
+            background: #1a1a24; padding: 12px 15px; font-weight: 600;
+            font-size: 0.9rem; border-bottom: 1px solid #333;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .chat-embed-container { flex: 1; width: 100%; height: 100%; overflow: hidden; }
+        .chat-embed-container iframe { width: 100% !important; height: 100% !important; border: none; }
 
         /* --- SECTION PROGRAMME --- */
         .programme-section {
-            width: 100%; 
-            max-width: 1400px; 
-            margin-top: 30px; 
-            background: #0f0f13; 
-            padding: 20px; 
-            border-radius: 8px; 
-            border: 1px solid #333;
+            width: 100%; max-width: 1400px; margin-top: 30px; background: #0f0f13;
+            padding: 20px; border-radius: 8px; border: 1px solid #333;
         }
-
-        .programme-section h2 {
-            font-family: 'Montserrat'; 
-            color: #ffffff;
-            margin-bottom: 15px;
-            border-left: 4px solid #ff3d3d;
-            padding-left: 10px;
-        }
-
-        .prog-header {
-            display: flex; 
-            justify-content: space-between; 
-            border-bottom: 1px solid #222; 
-            padding-bottom: 10px; 
-            margin-bottom: 10px; 
-            color: #ff3d3d;
-            font-weight: bold;
-        }
-
-        .prog-item {
-            display: flex; 
-            justify-content: space-between; 
-            padding: 10px 0; 
-            border-bottom: 1px solid #1a1a1a;
-        }
+        .programme-section h2 { font-family: 'Montserrat'; color: #ffffff; margin-bottom: 15px; border-left: 4px solid #ff3d3d; padding-left: 10px; }
+        .prog-header { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 10px; color: #ff3d3d; font-weight: bold; }
+        .prog-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
             .stream-layout { grid-template-columns: 1fr; }
             .chat-box { height: 400px; margin-top: 15px; }
         }
-
         @media (max-width: 768px) {
             .navbar { padding: 10px 15px; flex-direction: column; gap: 10px; }
             .nav-links { display: none; }
             .main-container { padding: 10px; }
             .player-wrapper { border-radius: 0; }
             .channel-info { flex-direction: column; gap: 15px; }
+            .subscribe-bar { border-radius: 0; flex-direction: column; align-items: stretch; }
+            .subscribe-form { max-width: 100%; }
         }
 
         @keyframes pulse {
@@ -268,7 +160,6 @@
 </head>
 <body>
 
-    <!-- MENU HAUT -->
     <nav class="navbar">
         <a href="#" class="nav-brand">
             <div class="nav-title">AMON</div>
@@ -284,26 +175,22 @@
     <main class="main-container">
         
         <div class="stream-layout">
-            <!-- COLONNE DE GAUCHE : LA VIDÉO -->
+            <!-- COLONNE DE GAUCHE -->
             <div>
                 <div class="player-wrapper">
                     <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
                 </div>
                 
-                <!-- Barre de contrôle style pro -->
-                <div class="player-controls">
-                    <div class="controls-left">
-                        <button class="btn-control">⏸</button>
-                        <button class="btn-control">🔊</button>
-                        <span style="color: #ff3d3d; font-weight: bold;">● EN DIRECT</span>
-                    </div>
-                    <div>
-                        <button class="btn-control">↻ Actualiser</button>
-                        <button class="btn-control">⛶ Plein écran</button>
-                    </div>
+                <!-- ⚠️ NOUVEAU : BARRE D'INSCRIPTION E-MAIL ⚠️ -->
+                <div class="subscribe-bar">
+                    <p>📧 Sois prévenu à chaque live :</p>
+                    <form class="subscribe-form" id="brevo-form">
+                        <input type="email" id="email-input" placeholder="Ton adresse e-mail" required>
+                        <button type="submit" id="subscribe-btn">S'inscrire</button>
+                    </form>
                 </div>
 
-                <!-- Infos de la chaîne -->
+                <!-- INFOS CHAÎNE -->
                 <div class="channel-info">
                     <div class="info-left">
                         <div class="channel-text">
@@ -311,27 +198,23 @@
                             <p>Nanars, Bis et films cultes en illimité.</p>
                         </div>
                     </div>
-                    <a href="#" class="btn-live">S'ABONNER</a>
                 </div>
             </div>
 
-            <!-- COLONNE DE DROITE : LE CHAT MINNIT -->
+            <!-- COLONNE DE DROITE : CHAT -->
             <div class="chat-box">
                 <div class="chat-header">
                     <span>💬 Le Salon AMON</span>
                     <span style="font-size: 0.7rem; color: #888;">Tchat en direct</span>
                 </div>
                 <div class="chat-embed-container">
-                    
-                    <!-- ⚠️ CODE MINNIT CHAT INTÉGRÉ ICI ⚠️ -->
                     <script src="https://minnit.chat/js/embed.js?c=1772345192" defer></script>
                     <span style="display: none;" class="minnit-chat-sembed" data-chatname="https://organizations.minnit.chat/901079517558866/c/Main?embed" data-style="width:100%; height:100%;" data-version="1.55">Chat</span>
-                    
                 </div>
             </div>
         </div>
 
-        <!-- SECTION BAS : PROGRAMME -->
+        <!-- PROGRAMME -->
         <div class="programme-section">
             <h2>Programme de la soirée</h2>
             <div class="prog-header">
@@ -346,6 +229,68 @@
         </div>
 
     </main>
+
+    <!-- ⚠️ SCRIPT D'INSCRIPTION BREVO ⚠️ -->
+    <script>
+        document.getElementById('brevo-form').addEventListener('submit', function(e) {
+            e.preventDefault(); // Empêche le rechargement de la page
+            
+            const email = document.getElementById('email-input').value;
+            const btn = document.getElementById('subscribe-btn');
+            
+            // On change le bouton pour dire que ça charge
+            btn.textContent = 'Patientez...';
+            btn.disabled = true;
+
+            // ⚠️ METS TA CLÉ API BREVO ICI ⚠️
+            const brevoApiKey = "TA_CLE_API_BREVO_ICI"; 
+            
+            // On envoie l'email à Brevo
+            fetch('https://api.brevo.com/v3/contacts', {
+                method: 'POST',
+                headers: {
+                    'accept': 'application/json',
+                    'content-type': 'application/json',
+                    'api-key': brevoApiKey
+                },
+                body: JSON.stringify({
+                    email: email,
+                    listIds: [2] // L'ID de ta liste Brevo (souvent 2)
+                })
+            })
+            .then(response => {
+                if (response.ok) {
+                    btn.textContent = '✅ Inscrit !';
+                    btn.style.background = '#00e676';
+                    document.getElementById('email-input').value = '';
+                    setTimeout(() => {
+                        btn.textContent = "S'inscrire";
+                        btn.style.background = '#00b0ff';
+                        btn.disabled = false;
+                    }, 3000);
+                } else {
+                    // Si l'email existe déjà, Brevo renvoie une erreur, mais on fait comme si c'était bon
+                    btn.textContent = '✅ Déjà inscrit !';
+                    btn.style.background = '#00e676';
+                    document.getElementById('email-input').value = '';
+                    setTimeout(() => {
+                        btn.textContent = "S'inscrire";
+                        btn.style.background = '#00b0ff';
+                        btn.disabled = false;
+                    }, 3000);
+                }
+            })
+            .catch(error => {
+                btn.textContent = '❌ Erreur';
+                btn.style.background = '#ff3d3d';
+                setTimeout(() => {
+                    btn.textContent = "S'inscrire";
+                    btn.style.background = '#00b0ff';
+                    btn.disabled = false;
+                }, 3000);
+            });
+        });
+    </script>
 
 </body>
 </html>
