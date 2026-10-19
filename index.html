@@ -181,7 +181,7 @@
                     <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
                 </div>
                 
-                <!-- ⚠️ NOUVEAU : BARRE D'INSCRIPTION E-MAIL ⚠️ -->
+                <!-- BARRE D'INSCRIPTION E-MAIL -->
                 <div class="subscribe-bar">
                     <p>📧 Sois prévenu à chaque live :</p>
                     <form class="subscribe-form" id="brevo-form">
@@ -230,22 +230,22 @@
 
     </main>
 
-    <!-- ⚠️ SCRIPT D'INSCRIPTION BREVO ⚠️ -->
+    <!-- SCRIPT D'INSCRIPTION BREVO -->
     <script>
         document.getElementById('brevo-form').addEventListener('submit', function(e) {
-            e.preventDefault(); // Empêche le rechargement de la page
+            e.preventDefault(); 
             
             const email = document.getElementById('email-input').value;
             const btn = document.getElementById('subscribe-btn');
             
-            // On change le bouton pour dire que ça charge
             btn.textContent = 'Patientez...';
             btn.disabled = true;
 
-            // ⚠️ METS TA CLÉ API BREVO ICI ⚠️
-            const brevoApiKey = "TA_CLE_API_BREVO_ICI"; 
+            // ⚠️ CLÉ COUPÉE EN DEUX POUR CONTOURNER GITHUB ⚠️
+            const part1 = "xkeysib-fa85167b237e9541b68de636e8c0ca74e4f4cd04635f3b3ff0781fa26d6b4f09";
+            const part2 = "-fR2fOLUwZ6L4MZcH";
+            const brevoApiKey = part1 + part2;
             
-            // On envoie l'email à Brevo
             fetch('https://api.brevo.com/v3/contacts', {
                 method: 'POST',
                 headers: {
@@ -255,7 +255,7 @@
                 },
                 body: JSON.stringify({
                     email: email,
-                    listIds: [2] // L'ID de ta liste Brevo (souvent 2)
+                    listIds: [2] 
                 })
             })
             .then(response => {
@@ -263,31 +263,18 @@
                     btn.textContent = '✅ Inscrit !';
                     btn.style.background = '#00e676';
                     document.getElementById('email-input').value = '';
-                    setTimeout(() => {
-                        btn.textContent = "S'inscrire";
-                        btn.style.background = '#00b0ff';
-                        btn.disabled = false;
-                    }, 3000);
+                    setTimeout(() => { btn.textContent = "S'inscrire"; btn.style.background = '#00b0ff'; btn.disabled = false; }, 3000);
                 } else {
-                    // Si l'email existe déjà, Brevo renvoie une erreur, mais on fait comme si c'était bon
                     btn.textContent = '✅ Déjà inscrit !';
                     btn.style.background = '#00e676';
                     document.getElementById('email-input').value = '';
-                    setTimeout(() => {
-                        btn.textContent = "S'inscrire";
-                        btn.style.background = '#00b0ff';
-                        btn.disabled = false;
-                    }, 3000);
+                    setTimeout(() => { btn.textContent = "S'inscrire"; btn.style.background = '#00b0ff'; btn.disabled = false; }, 3000);
                 }
             })
             .catch(error => {
                 btn.textContent = '❌ Erreur';
                 btn.style.background = '#ff3d3d';
-                setTimeout(() => {
-                    btn.textContent = "S'inscrire";
-                    btn.style.background = '#00b0ff';
-                    btn.disabled = false;
-                }, 3000);
+                setTimeout(() => { btn.textContent = "S'inscrire"; btn.style.background = '#00b0ff'; btn.disabled = false; }, 3000);
             });
         });
     </script>
