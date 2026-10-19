@@ -80,16 +80,12 @@
 
         .subscribe-bar p { color: #ccc; font-size: 0.9rem; margin: 0; }
         
-        .subscribe-form {
-            display: flex; gap: 10px; flex-grow: 1; max-width: 400px;
-        }
-
+        .subscribe-form { display: flex; gap: 10px; flex-grow: 1; max-width: 400px; }
         .subscribe-form input {
             flex-grow: 1; padding: 10px 15px; border-radius: 6px; border: 1px solid #444;
             background: #1a1a1a; color: #fff; font-family: inherit; outline: none;
         }
         .subscribe-form input:focus { border-color: #00b0ff; }
-        
         .subscribe-form button {
             padding: 10px 20px; border-radius: 6px; border: none;
             background: #00b0ff; color: #000; font-weight: bold; cursor: pointer;
@@ -107,18 +103,11 @@
         .channel-text h1 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; }
         .channel-text p { color: #888; font-size: 0.9rem; }
 
-        .btn-live {
-            background: #ff3d3d; color: white; padding: 8px 16px; border-radius: 4px;
-            font-weight: bold; font-size: 0.8rem; text-decoration: none;
-            display: flex; align-items: center; gap: 8px; animation: pulse 2s infinite;
-        }
-
         /* --- CHAT MINNIT --- */
         .chat-box {
             background: #0f0f13; border: 1px solid #333; border-radius: 8px;
             display: flex; flex-direction: column; height: 600px; overflow: hidden;
         }
-
         .chat-header {
             background: #1a1a24; padding: 12px 15px; font-weight: 600;
             font-size: 0.9rem; border-bottom: 1px solid #333;
@@ -134,7 +123,17 @@
         }
         .programme-section h2 { font-family: 'Montserrat'; color: #ffffff; margin-bottom: 15px; border-left: 4px solid #ff3d3d; padding-left: 10px; }
         .prog-header { display: flex; justify-content: space-between; border-bottom: 1px solid #222; padding-bottom: 10px; margin-bottom: 10px; color: #ff3d3d; font-weight: bold; }
-        .prog-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid #1a1a1a; }
+        
+        .prog-item { 
+            display: flex; justify-content: space-between; 
+            padding: 15px 10px; border-bottom: 1px solid #1a1a1a;
+            background: rgba(255, 61, 61, 0.05); /* Légèrement surligné */
+            border-radius: 6px; margin-bottom: 5px;
+        }
+        .prog-item:last-child { border-bottom: none; }
+        .prog-time { font-weight: bold; color: #fff; font-size: 1.1rem; }
+        .prog-title { color: #ffd600; font-weight: bold; font-size: 1.1rem; }
+        .prog-tag { font-size: 0.8rem; background: #ff3d3d; color: #fff; padding: 2px 8px; border-radius: 4px; margin-left: 10px; }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 1024px) {
@@ -149,12 +148,7 @@
             .channel-info { flex-direction: column; gap: 15px; }
             .subscribe-bar { border-radius: 0; flex-direction: column; align-items: stretch; }
             .subscribe-form { max-width: 100%; }
-        }
-
-        @keyframes pulse {
-            0% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 61, 61, 0.7); }
-            70% { opacity: 0.9; box-shadow: 0 0 0 10px rgba(255, 61, 61, 0); }
-            100% { opacity: 1; box-shadow: 0 0 0 0 rgba(255, 61, 61, 0); }
+            .prog-item { flex-direction: column; gap: 5px; }
         }
     </style>
 </head>
@@ -194,7 +188,7 @@
                 <div class="channel-info">
                     <div class="info-left">
                         <div class="channel-text">
-                            <h1>Amon</h1>
+                            <h1>Amon du Texas</h1>
                             <p>Nanars, Bis et films cultes en illimité.</p>
                         </div>
                     </div>
@@ -214,17 +208,31 @@
             </div>
         </div>
 
-        <!-- PROGRAMME -->
+        <!-- SECTION PROGRAMME (MIS A JOUR POUR CE SOIR) -->
         <div class="programme-section">
             <h2>Programme de la soirée</h2>
             <div class="prog-header">
                 <span>Heure</span><span>Titre du film</span>
             </div>
             <div class="prog-item">
-                <span>20:00</span><span>THE LOST BOYS (1987)</span>
+                <div>
+                    <span class="prog-time">20:00</span>
+                    <span class="prog-tag">HORREUR</span>
+                </div>
+                <div>
+                    <span class="prog-title">LE RETOUR DES MORTS VIVANTS</span>
+                    <span style="color:#888; font-size:0.9rem;"> (1985)</span>
+                </div>
             </div>
             <div class="prog-item">
-                <span>22:00</span><span>MAD MAX 2 (1981)</span>
+                <div>
+                    <span class="prog-time">22:00</span>
+                    <span class="prog-tag">HORREUR</span>
+                </div>
+                <div>
+                    <span class="prog-title">LE RETOUR DES MORTS VIVANTS 2</span>
+                    <span style="color:#888; font-size:0.9rem;"> (1988)</span>
+                </div>
             </div>
         </div>
 
@@ -241,7 +249,7 @@
             btn.textContent = 'Patientez...';
             btn.disabled = true;
 
-            // ⚠️ CLÉ COUPÉE EN DEUX POUR CONTOURNER GITHUB ⚠️
+            // CLÉ COUPÉE EN DEUX POUR CONTOURNER GITHUB
             const part1 = "xkeysib-fa85167b237e9541b68de636e8c0ca74e4f4cd04635f3b3ff0781fa26d6b4f09";
             const part2 = "-fR2fOLUwZ6L4MZcH";
             const brevoApiKey = part1 + part2;
