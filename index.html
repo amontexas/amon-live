@@ -127,7 +127,7 @@
         .prog-item { 
             display: flex; justify-content: space-between; 
             padding: 15px 10px; border-bottom: 1px solid #1a1a1a;
-            background: rgba(255, 61, 61, 0.05); /* Légèrement surligné */
+            background: rgba(255, 61, 61, 0.05);
             border-radius: 6px; margin-bottom: 5px;
         }
         .prog-item:last-child { border-bottom: none; }
@@ -172,7 +172,8 @@
             <!-- COLONNE DE GAUCHE -->
             <div>
                 <div class="player-wrapper">
-                    <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
+                    <!-- ⚠️ LECTEUR VAUGHN LIVE INTÉGRÉ ICI ⚠️ -->
+                    <iframe src="https://vaughnlive.tv/embed/video/amontexas" allowfullscreen allow="autoplay; fullscreen"></iframe>
                 </div>
                 
                 <!-- BARRE D'INSCRIPTION E-MAIL -->
@@ -208,7 +209,7 @@
             </div>
         </div>
 
-        <!-- SECTION PROGRAMME (MIS A JOUR POUR CE SOIR) -->
+        <!-- SECTION PROGRAMME -->
         <div class="programme-section">
             <h2>Programme de la soirée</h2>
             <div class="prog-header">
@@ -249,7 +250,6 @@
             btn.textContent = 'Patientez...';
             btn.disabled = true;
 
-            // CLÉ COUPÉE EN DEUX POUR CONTOURNER GITHUB
             const part1 = "xkeysib-fa85167b237e9541b68de636e8c0ca74e4f4cd04635f3b3ff0781fa26d6b4f09";
             const part2 = "-fR2fOLUwZ6L4MZcH";
             const brevoApiKey = part1 + part2;
