@@ -45,6 +45,7 @@
             overflow: hidden;
         }
 
+        /* On force l'iframe de Kick à prendre toute la place */
         .player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         /* --- BARRE D'INSCRIPTION --- */
@@ -115,9 +116,13 @@
             <!-- COLONNE DE GAUCHE -->
             <div>
                 <div class="player-wrapper">
-                    <!-- ⚠️ TENTATIVE D'INTÉGRATION VAUGHN LIVE ⚠️ -->
-                    <!-- Si ça affiche un écran noir, c'est que Vaughn bloque l'intégration -->
-                    <iframe src="https://vaughn.live/embed/video/amontexas" allowfullscreen allow="autoplay; fullscreen"></iframe>
+                    <!-- ⚠️ LECTEUR KICK INTÉGRÉ ICI ⚠️ -->
+                    <!-- Remplace "amontexas" par ton nom d'utilisateur Kick -->
+                    <iframe src="https://player.kick.com/amontexas?autoplay=true&muted=true" 
+                            allowfullscreen="true" 
+                            scrolling="no" 
+                            frameborder="0">
+                    </iframe>
                 </div>
                 
                 <!-- BARRE D'INSCRIPTION E-MAIL -->
