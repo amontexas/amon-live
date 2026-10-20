@@ -37,40 +37,15 @@
         .main-container { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 20px; max-width: 1500px; margin: 0 auto; width: 100%; }
         .stream-layout { display: grid; grid-template-columns: 1fr 400px; gap: 20px; width: 100%; max-width: 1400px; }
 
-        /* --- LECTEUR VIDÉO (REMPLACÉ PAR UN BOUTON) --- */
+        /* --- LECTEUR VIDÉO --- */
         .player-wrapper {
-            width: 100%; aspect-ratio: 16 / 9; background: #0a0a0a; border-radius: 8px;
+            width: 100%; aspect-ratio: 16 / 9; background: #000; border-radius: 8px;
             position: relative; border: 1px solid #333;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(255, 61, 61, 0.1);
-            overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background-image: url('https://images.unsplash.com/photo-1598899134739-24c46f58b8c0?q=80&w=1000&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-        }
-        
-        /* Un filtre sombre sur l'image de fond */
-        .player-wrapper::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
-            background: rgba(5, 5, 5, 0.85); z-index: 1;
+            overflow: hidden;
         }
 
-        .player-content {
-            position: relative; z-index: 2; text-align: center;
-        }
-
-        .player-content h2 {
-            font-family: 'Montserrat', sans-serif; font-size: 2rem; color: #fff; margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0,0,0,0.8);
-        }
-
-        .btn-kick {
-            display: inline-flex; align-items: center; gap: 10px;
-            background: #53fc18; color: #000; text-decoration: none;
-            font-size: 1.2rem; font-weight: 900; padding: 15px 40px;
-            border-radius: 8px; transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(83, 252, 24, 0.4);
-            text-transform: uppercase;
-        }
-        .btn-kick:hover { transform: scale(1.05); background: #46d912; box-shadow: 0 0 30px rgba(83, 252, 24, 0.8); }
+        .player-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
         /* --- BARRE D'INSCRIPTION --- */
         .subscribe-bar { display: flex; justify-content: space-between; align-items: center; background: #111; padding: 15px 20px; border-radius: 0 0 8px 8px; border: 1px solid #333; border-top: none; margin-bottom: 15px; flex-wrap: wrap; gap: 15px; }
@@ -117,7 +92,6 @@
             .subscribe-bar { border-radius: 0; flex-direction: column; align-items: stretch; }
             .subscribe-form { max-width: 100%; }
             .prog-item { flex-direction: column; gap: 5px; }
-            .player-content h2 { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -141,13 +115,8 @@
             <!-- COLONNE DE GAUCHE -->
             <div>
                 <div class="player-wrapper">
-                    <!-- ⚠️ BOUTON VERS KICK (Remplace amontexas par ton pseudo si besoin) ⚠️ -->
-                    <div class="player-content">
-                        <h2>Prêt pour la séance ?</h2>
-                        <a href="https://kick.com/amontexas" target="_blank" class="btn-kick">
-                            <span>▶</span> REGARDER LE LIVE
-                        </a>
-                    </div>
+                    <!-- LECTEUR 8CHAN -->
+                    <iframe src="https://8chan.tv/view/f2bb2f7f-c0a1-4f49-8788-e20505b93b25/?embedded=True" allowfullscreen allow="autoplay; fullscreen"></iframe>
                 </div>
                 
                 <!-- BARRE D'INSCRIPTION E-MAIL -->
